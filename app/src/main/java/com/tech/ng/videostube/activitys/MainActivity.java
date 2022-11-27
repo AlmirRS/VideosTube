@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.tech.ng.videostube.R;
+import com.tech.ng.videostube.adapter.AdapterVideo;
 import com.tech.ng.videostube.model.Video;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerVideos;
     private List<Video> videos = new ArrayList<>();
+    private AdapterVideo adapterVideo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,15 +35,25 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         //configurar recyclerview
+        recuperarVideos();
+        adapterVideo = new AdapterVideo(videos, this);
         recyclerVideos.setHasFixedSize(true);
         recyclerVideos.setLayoutManager(new LinearLayoutManager(this));
-        //recyclerVideos.setAdapter();
+        recyclerVideos.setAdapter(adapterVideo);
 
 
 
     }
 
     private void recuperarVideos() {
+
+        Video video1 = new Video();
+        video1.setTitulo("Video 1 interessante");
+        videos.add( video1 );
+
+        Video video2 = new Video();
+        video2.setTitulo("Video 2 interessante");
+        videos.add( video2 );
 
     }
 }
